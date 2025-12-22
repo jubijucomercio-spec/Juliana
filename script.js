@@ -215,11 +215,6 @@ function attachGridEvents(PRODUCTS) {
       
       document.querySelector('.modal-img-container').classList.remove('zoomed');
 
-      modalWpp.onclick = () => {
-        const pageUrl = location.href.split('#')[0];
-        const msg = `Olá *${COMPANY_NAME}*! \n\nGostaria de saber mais sobre:\n\n *${product.title}*\n${product.subtitle}\n ${product.price}\n\n ${product.desc}\n\n🔗 Link: ${pageUrl}`;
-        window.open(waLink(WHATSAPP_NUMBER, msg), '_blank');
-      };
       
       modalMore.onclick = toggleImageZoom;
       modalImg.onclick = toggleImageZoom;
