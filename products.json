@@ -1,5 +1,6 @@
   [
-  { "id": "brinco1", "title": "Trio de Argola", "subtitle": "Dourado", "price": "R$ 29,00", "img": "images/produto01.jpeg", "desc": "Conjunto elegante de três argolas douradas.", "badge": "Mais Vendido", "sold": false, "category": "brincos" },
+  { "id": "brinco1", "title": "Trio de Argola", "subtitle": "Dourado", "price": "R$ 29,00", "img": "images/produto01.jpeg", "desc": "Conjunto elegante de três argolas douradas.", "badge": "Mais Vendido", "sold": true
+    , "category": "brincos" },
   { "id": "brinco2", "title": "Brinco Argola Trançada", "subtitle": "Ouro e Prata", "price": "R$ 17,00", "img": "images/produto02.jpeg", "desc": "Argola trançada com acabamento refinado.", "badge": "Novo", "sold": false, "category": "brincos" },
   { "id": "brinco3", "title": "Brinco Dourado", "subtitle": "", "price": "R$ 17,00", "img": "images/produto03.jpeg", "desc": "Brinco clássico com banho dourado.", "badge": "Destaque", "sold": false, "category": "brincos" },
   { "id": "brinco4", "title": "Brinco Coração Triplo", "subtitle": "Dourado", "price": "R$ 17,00", "img": "images/produto04.jpeg", "desc": "Três corações dourados delicados.", "badge": "Promoção", "sold": false, "category": "brincos" },
@@ -19,7 +20,7 @@
   { "id": "brinco18", "title": "Brinco Pérola", "subtitle": "", "price": "R$ 22,00", "img": "images/produto18.jpeg", "desc": "Brinco com pérola elegante.", "badge": "Mais Vendido", "sold": false, "category": "brincos" },
   { "id": "brinco19", "title": "Argola Pérola", "subtitle": "", "price": "R$ 22,90", "img": "images/produto19.jpeg", "desc": "Argola com detalhes em pérola.", "badge": "Mais Vendido", "sold": false, "category": "brincos" },
   { "id": "brinco20", "title": "Argola M com Pérolas", "subtitle": "Prata e Dourado", "price": "R$ 18,90", "img": "images/produto20.jpeg", "desc": "Argola média com pérolas.", "badge": "Promoção", "sold": false, "category": "brincos" },
-  { "id": "brinco21", "title": "Brinco Coração com Pérolas", "subtitle": "Dourado", "price": "R$ 22,90", "img": "images/produto21.jpeg", "desc": "Brinco coração adornado com pérolas.", "badge": "Destaque", "sold": false, "category": "brincos" },
+  { "id": "brinco21", "title": "Brinco Coração com Pérolas", "subtitle": "Dourado", "price": "R$ 22,90", "img": "images/produto21.jpeg", "desc": "Brinco coração adornado com pérolas.", "badge": "Destaque", "sold": true, "category": "brincos" },
   { "id": "brinco22", "title": "Brinco Flor Perolado", "subtitle": "Dourado e Prata", "price": "R$ 18,90", "img": "images/produto22.jpeg", "desc": "Flor com acabamento perolado.", "badge": "Destaque", "sold": false, "category": "brincos" },
   { "id": "brinco23", "title": "Brinco Cereja PP", "subtitle": "", "price": "R$ 10,00", "img": "images/produto24.jpeg", "desc": "Brinco cereja tamanho pequeno.", "badge": "Promoção", "sold": true, "category": "brincos" },
   { "id": "brinco24", "title": "Argola Cereja Longa", "subtitle": "Dourado", "price": "R$ 16,00", "img": "images/produto26.jpeg", "desc": "Argola longa com detalhe de cereja.", "badge": "Promoção", "sold": false, "category": "brincos" },
