@@ -20,25 +20,6 @@ const closeBtn = document.getElementById('closeBtn');
 let isZoomed = false;
 
 
-function ajustarAlturaHero() {
-  const hero = document.querySelector('.hero');
-  if (!hero) return;
-
-  const larguraViewport = window.innerWidth;
-  const proporcaoImagem = 1585 / 352; // 4.5:1
-
-  const alturaIdeal = larguraViewport / proporcaoImagem; // altura = largura / proporção
-
-  hero.style.height = `${alturaIdeal}px`;
-}
-
-// Ajusta ao carregar a página
-window.addEventListener('load', ajustarAlturaHero);
-
-// Ajusta ao redimensionar a janela
-window.addEventListener('resize', ajustarAlturaHero);
-
-
 
 /* ========== SISTEMA DE CATEGORIAS ========== */
 function updateCategoryCounts(products) {
