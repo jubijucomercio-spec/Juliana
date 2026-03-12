@@ -61,6 +61,13 @@ function getFilteredProducts(products) {
 function renderGrid(PRODUCTS) {
   const filteredProducts = getFilteredProducts(PRODUCTS);
   
+  // Separar produtos disponíveis e esgotados
+  const availableProducts = filteredProducts.filter(p => !p.sold);
+  const soldProducts = filteredProducts.filter(p => p.sold);
+  
+  // Combinar: disponíveis primeiro, depois esgotados
+  const sortedProducts = [...availableProducts, ...soldProducts];
+  
   grid.innerHTML = '';
   grid.style.opacity = '0';
   setTimeout(() => {
@@ -69,7 +76,7 @@ function renderGrid(PRODUCTS) {
   
   const start = (currentPage - 1) * ITEMS_PER_PAGE;
   const end = start + ITEMS_PER_PAGE;
-  const visible = filteredProducts.slice(start, end);
+  const visible = sortedProducts.slice(start, end);
 
   if (visible.length === 0) {
     grid.innerHTML = '<div class="no-products"><p>Nenhum produto encontrado nesta categoria.</p></div>';
@@ -120,49 +127,94 @@ function renderGrid(PRODUCTS) {
     grid.appendChild(c);
   });
 
-  renderPagination(filteredProducts);
+  renderPagination(sortedProducts);
 }
 
 function renderPagination(filteredProducts) {
-  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
-  const old = document.querySelector('.pagination');
-  if (old) old.remove();
+  // Separar produtos disponíveis e esgotados
+  const availableProducts = filteredProducts.filter(p => !p.sold);
+  const soldProducts = filteredProducts.filter(p => p.sold);
+  const sortedProducts = [...availableProducts, ...soldProducts];
+  
+  const totalPages = Math.ceil(sortedProducts.length / ITEMS_PER_PAGE);
+  
+  // Remover paginação anterior
+  const oldPagination = document.querySelector('.pagination-wrapper');
+  if (oldPagination) oldPagination.remove();
 
   if (totalPages <= 1) return;
 
+  // Criar wrapper
   const container = document.createElement('div');
-  container.className = 'pagination';
+  container.className = 'pagination-wrapper';
+  
+  // Criar paginação
+  const pagination = document.createElement('div');
+  pagination.className = 'pagination';
 
+  // Botão Anterior
   const prev = document.createElement('button');
   prev.textContent = '← Anterior';
   prev.className = 'btn details';
+  prev.id = 'prevBtn';
   prev.disabled = currentPage === 1;
   prev.onclick = () => {
     currentPage--;
     renderGrid(ALL_PRODUCTS);
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Informações
+  const info = document.createElement('span');
+  info.className = 'page-info';
+  info.innerHTML = `Página <span id="currentPage">${currentPage}</span> de <span id="totalPages">${totalPages}</span>`;
+
+  // Botão Próximo
   const next = document.createElement('button');
   next.textContent = 'Próxima →';
   next.className = 'btn details';
+  next.id = 'nextBtn';
   next.disabled = currentPage === totalPages;
   next.onclick = () => {
     currentPage++;
     renderGrid(ALL_PRODUCTS);
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const info = document.createElement('span');
-  info.style.color = '#666';
-  info.style.margin = '0 20px';
-  info.textContent = `Página ${currentPage} de ${totalPages}`;
+  // Adicionar elementos
+  pagination.appendChild(prev);
+  pagination.appendChild(info);
+  pagination.appendChild(next);
+  container.appendChild(pagination);
 
-  container.appendChild(prev);
-  container.appendChild(info);
-  container.appendChild(next);
-
+  // Adicionar ao grid
   grid.appendChild(container);
+}
+
+// Atualizar números da paginação
+function updatePaginationNumbers(current, total) {
+  const currentPageEl = document.getElementById('currentPage');
+  const totalPagesEl = document.getElementById('totalPages');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  
+  if (currentPageEl) currentPageEl.textContent = current;
+  if (totalPagesEl) totalPagesEl.textContent = total;
+  if (prevBtn) prevBtn.disabled = current === 1;
+  if (nextBtn) nextBtn.disabled = current === total;
+}
+
+// Atualizar números da paginação
+function updatePaginationNumbers(current, total) {
+  const currentPageEl = document.getElementById('currentPage');
+  const totalPagesEl = document.getElementById('totalPages');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  
+  if (currentPageEl) currentPageEl.textContent = current;
+  if (totalPagesEl) totalPagesEl.textContent = total;
+  if (prevBtn) prevBtn.disabled = current === 1;
+  if (nextBtn) nextBtn.disabled = current === total;
 }
 
 function attachGridEvents(PRODUCTS) {
@@ -195,7 +247,6 @@ function attachGridEvents(PRODUCTS) {
       modalBack.style.display = "flex";
       
       document.querySelector('.modal-img-container').classList.remove('zoomed');
-
       
       modalMore.onclick = toggleImageZoom;
       modalImg.onclick = toggleImageZoom;

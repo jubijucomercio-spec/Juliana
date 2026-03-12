@@ -125,16 +125,17 @@ header {
  
   width: 100%;
   margin: 20px auto 0;
-  height: 60vh;
-  min-height: 400px;
-  max-height: 700px;
-  overflow: hidden;
+  /* altura fluida para comportar a imagem inteira sem corte */
+  height: auto;
+  min-height: auto;
+  max-height: none;
+  /* remover overflow para que imagem não seja cortada */
+  overflow: visible;
   margin-top: 20px;
   margin-bottom: 0; /* Remove margem inferior se houver, para o texto colar suavemente */
   text-align: center;
   position: relative;
   z-index: 1;
-  overflow: hidden;
   background: linear-gradient(180deg, 
     #FFFFF0 0%,
     #FFF8F8 30%,
@@ -925,16 +926,7 @@ header {
   to { opacity: 1; }
 }
 
-/* Paginação */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  margin-top: 80px;
-  padding: 50px 0;
-  flex-wrap: wrap;
-}
+
 
 /* Sacola (Sidebar) */
 #sacola {
@@ -2236,5 +2228,246 @@ body {
 /* efeito de hover */
 .sacola-container:hover {
   transform: translateY(-50%) scale(1.03);
+
 }
 
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .pagination {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .pagination button {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .pagination span {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination {
+    padding: 15px 0;
+  }
+  
+  .pagination button {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+  }
+}
+
+
+
+/* Estilo para a informação de página */
+.page-info {
+  color: #666;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0 10px;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Melhorar contraste em telas grandes */
+@media (min-width: 1200px) {
+  .pagination {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+
+/* Informações de página */
+.page-info {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 16px;
+  white-space: nowrap;
+}
+
+.page-info span {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Animação */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== RESPONSIVIDADE ========== */
+
+/* Tablet */
+@media (max-width: 968px) {
+  .pagination-wrapper {
+    padding: 30px 15px;
+  }
+  
+  .pagination {
+    padding: 14px 24px;
+    gap: 12px;
+  }
+  
+  .pagination button {
+    padding: 10px 20px;
+    font-size: 13px;
+    min-width: 90px;
+  }
+  
+  .page-info {
+    font-size: 13px;
+    padding: 0 12px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .pagination-wrapper {
+    padding: 20px 10px;
+    margin-top: 40px;
+  }
+  
+  .pagination {
+    padding: 12px 16px;
+    gap: 10px;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .pagination button {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 14px;
+    min-width: auto;
+  }
+  
+  .page-info {
+    font-size: 12px;
+    padding: 8px 0;
+    text-align: center;
+  }
+}
+
+/* Mobile Pequeno */
+@media (max-width: 480px) {
+  .pagination-wrapper {
+    padding: 15px 8px;
+  }
+  
+  .pagination {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  
+  .pagination button {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  
+  .page-info {
+    font-size: 11px;
+  }
+}
+
+/* Remover estilos conflitantes */
+.pagination {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* Garantir que o grid não afete a paginação */
+#grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 40px;
+  transition: opacity 0.3s ease;
+}
+
+/* Garantir que o container de paginação não seja afetado */
+.pagination-wrapper {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center;
+  /* igualar largura ao container principal */
+  max-width: 100%;
+  margin: 40px auto !important;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.pagination {
+  display: inline-flex !important;
+  gap: 10px;
+}
+
+.pagination button,
+.pagination span {
+  white-space: nowrap;
+}
+
+/* Ajustes visuais para mobile */
+@media (max-width: 768px) {
+  .wrap {
+    padding: 0 20px 60px;
+  }
+  .grid {
+    gap: 20px;
+  }
+  .thumb-container {
+    height: 260px;
+  }
+  .card-content {
+    padding: 16px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .subtitle {
+    font-size: 10px;
+  }
+  .actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .actions .btn {
+    width: 100%;
+  }
+}
+
+/* Centralizar paginação em desktop */
+@media (min-width: 769px) {
+  .pagination-wrapper {
+    justify-content: center !important;
+  }
+  .pagination {
+    display: inline-flex !important;
+    justify-content: center !important;
+    margin: 0 auto;
+    width: auto !important;
+  }
+}
